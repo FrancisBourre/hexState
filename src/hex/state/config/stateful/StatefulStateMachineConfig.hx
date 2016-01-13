@@ -26,8 +26,8 @@ class StatefulStateMachineConfig implements IStatefulConfig
 		this._stateMachine = new StateMachine( this._startState );
 		this._stateController = new StateController( injector, this._stateMachine );
 
-		injector.map( StateMachine ).toValue( this._stateMachine );
-		injector.map( StateController ).toValue( this._stateController );
+		injector.mapToValue( StateMachine, this._stateMachine );
+		injector.mapToValue( StateController, this._stateController );
 
 		dispatcher.addListener( this._stateController );
 	}
