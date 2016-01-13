@@ -9,6 +9,7 @@ import hex.di.IBasicInjector;
 import hex.event.Dispatcher;
 import hex.event.MessageType;
 import hex.inject.Injector;
+import hex.state.control.StateController;
 import hex.state.mock.AnotherMockCommandWithRequest;
 import hex.state.mock.DeleteAllCookiesMockCommand;
 import hex.state.mock.DisplayAddBannerMockCommand;
@@ -25,7 +26,6 @@ import hex.state.mock.MockRequest;
 import hex.state.mock.PrepareUserInfosMockCommand;
 import hex.state.mock.RemoveAdminPrivilegesMockCommand;
 import hex.state.mock.StoreUserActivityMockCommand;
-import hex.state.StateController;
 import hex.unittest.assertion.Assert;
 import hex.unittest.runner.MethodRunner;
 

@@ -8,7 +8,6 @@ import hex.event.MessageType;
  */
 class Transition
 {
-
 	private var _source 		: State;
 	private var _target 		: State;
 	private var _messageType 	: MessageType;

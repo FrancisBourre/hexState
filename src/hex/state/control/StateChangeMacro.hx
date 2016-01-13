@@ -1,4 +1,4 @@
-package hex.state;
+package hex.state.control;
 
 import hex.control.macro.Macro;
 

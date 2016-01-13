@@ -1,4 +1,4 @@
-package hex.state;
+package hex.state.control;
 
 import hex.control.async.AsyncCommand;
 import hex.control.command.ICommandMapping;
@@ -6,6 +6,7 @@ import hex.control.Request;
 import hex.di.IDependencyInjector;
 import hex.event.DynamicHandler;
 import hex.event.MessageType;
+import hex.state.control.StateChangeMacro;
 
 /**
  * ...
