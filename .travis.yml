@@ -53,7 +53,7 @@ install:
 
 script:
   - haxe build-js.hxml           && node bin/MainStateTest.js
-  - haxe build-flash.hxml -D fdb && haxe flash/run.hxml bin/MainMachinaTest.swf
+  - haxe build-flash.hxml -D fdb && haxe flash/run.hxml bin/MainStateTest.swf
   
 notifications:
   email:
