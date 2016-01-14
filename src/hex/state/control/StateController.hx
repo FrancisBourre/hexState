@@ -4,7 +4,7 @@ import hex.control.async.AsyncCommand;
 import hex.control.command.ICommandMapping;
 import hex.control.Request;
 import hex.di.IDependencyInjector;
-import hex.event.DynamicHandler;
+import hex.event.BasicHandler;
 import hex.event.MessageType;
 import hex.state.control.StateChangeMacro;
 
@@ -111,7 +111,7 @@ class StateController
 		this._dispatchStateChange( this._currentState, this._currentState.getEnterHandlerList() );
 	}
 
-	private function _dispatchStateChange( state : State, handlers : Array<DynamicHandler> ) : Void
+	private function _dispatchStateChange( state : State, handlers : Array<BasicHandler> ) : Void
 	{
 		for ( handler in handlers )
 		{

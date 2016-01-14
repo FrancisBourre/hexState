@@ -4,7 +4,7 @@ import hex.collection.HashMap;
 import hex.control.command.CommandMapping;
 import hex.control.command.ICommand;
 import hex.control.command.ICommandMapping;
-import hex.event.DynamicHandler;
+import hex.event.BasicHandler;
 import hex.event.MessageType;
 import hex.log.Stringifier;
 import hex.module.Module;
@@ -23,8 +23,8 @@ class State
 	private var _enterSubCommandMappings 	: Array<ICommandMapping> = [];
 	private var _exitSubCommandMappings 	: Array<ICommandMapping> = [];
 
-	private var _enterHandlers 				: Array<DynamicHandler> = [];
-	private var _exitHandlers 				: Array<DynamicHandler> = [];
+	private var _enterHandlers 				: Array<BasicHandler> = [];
+	private var _exitHandlers 				: Array<BasicHandler> = [];
 
 	public function new( stateName : String )
 	{
@@ -41,12 +41,12 @@ class State
 		this._exitHandlers = [];
 	}
 
-	public function getEnterHandlerList() : Array<DynamicHandler>
+	public function getEnterHandlerList() : Array<BasicHandler>
 	{
 		return this._enterHandlers;
 	}
 
-	public function getExitHandlerList() : Array<DynamicHandler>
+	public function getExitHandlerList() : Array<BasicHandler>
 	{
 		return this._exitHandlers;
 	}
@@ -63,20 +63,20 @@ class State
 	
 	public function addEnterHandler( scope : {}, callback : State->Void ) : Bool
 	{
-		return this._addHandler( this._enterHandlers, new DynamicHandler( scope, callback ) );
+		return this._addHandler( this._enterHandlers, new BasicHandler( scope, callback ) );
 	}
 
 	public function addExitHandler( scope : {}, callback : State->Void ) : Bool
 	{
-		return this._addHandler( this._exitHandlers, new DynamicHandler( scope, callback ) );
+		return this._addHandler( this._exitHandlers, new BasicHandler( scope, callback ) );
 	}
 
-	public function removeEnterHandler( handler : DynamicHandler ) : Bool
+	public function removeEnterHandler( handler : BasicHandler ) : Bool
 	{
 		return this._removeHandler( this._enterHandlers, handler );
 	}
 
-	public function removeExitHandler( handler : DynamicHandler ) : Bool
+	public function removeExitHandler( handler : BasicHandler ) : Bool
 	{
 		return this._removeHandler( this._exitHandlers, handler );
 	}
@@ -190,7 +190,7 @@ class State
 		return Stringifier.stringify( this ) + "::" + this._stateName;
 	}
 
-	private function _addHandler( handlers : Array<DynamicHandler>, handler : DynamicHandler ) : Bool
+	private function _addHandler( handlers : Array<BasicHandler>, handler : BasicHandler ) : Bool
 	{
 		if ( handlers.indexOf( handler ) == -1 )
 		{
@@ -203,7 +203,7 @@ class State
 		}
 	}
 
-	private function _removeHandler( handlers : Array<DynamicHandler>, handler : DynamicHandler ) : Bool
+	private function _removeHandler( handlers : Array<BasicHandler>, handler : BasicHandler ) : Bool
 	{
 		var id : Int = handlers.indexOf( handler );
 		if (  id != -1 )
