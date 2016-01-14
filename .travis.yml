@@ -52,7 +52,7 @@ install:
   - haxelib list
 
 script:
-  - haxe build-js.hxml           && node bin/MainMachinaTest.js
+  - haxe build-js.hxml           && node bin/MainStateTest.js
   - haxe build-flash.hxml -D fdb && haxe flash/run.hxml bin/MainMachinaTest.swf
   
 notifications:
