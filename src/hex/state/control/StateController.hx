@@ -21,7 +21,7 @@ class StateController
 	private var _currentState			: State;
 	private var _targetState			: State;
 
-	private var _request				: Dynamic;
+	private var _request				: Request;
 
 	public function new( injector : IDependencyInjector, stateMachine : StateMachine )
 	{
@@ -45,7 +45,6 @@ class StateController
 			if ( request != null )
 			{
 				this._request 	= request;
-				//this._injector.mapToValue( Request, request );
 			}
 
 			this._targetState 		= target;
@@ -100,9 +99,8 @@ class StateController
 
 	private function _onEnterTargetState( cmd : AsyncCommand ) : Void
 	{
-		if ( this._request )
+		if ( this._request != null )
 		{
-			//this._injector.unmap( Request );
 			this._request = null;
 		}
 

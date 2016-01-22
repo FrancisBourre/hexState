@@ -4,6 +4,8 @@ import hex.collection.HashMap;
 import hex.control.command.CommandMapping;
 import hex.control.command.ICommand;
 import hex.control.command.ICommandMapping;
+import hex.di.IBasicInjector;
+import hex.di.IContextOwner;
 import hex.event.BasicHandler;
 import hex.event.MessageType;
 import hex.log.Stringifier;
@@ -20,8 +22,8 @@ class State
 
 	private var _transitions				: HashMap<MessageType, Transition> = new HashMap();
 
-	private var _enterSubCommandMappings 	: Array<ICommandMapping> = [];
-	private var _exitSubCommandMappings 	: Array<ICommandMapping> = [];
+	private var _enterCommandMappings 	: Array<ICommandMapping> = [];
+	private var _exitCommandMappings 	: Array<ICommandMapping> = [];
 
 	private var _enterHandlers 				: Array<BasicHandler> = [];
 	private var _exitHandlers 				: Array<BasicHandler> = [];
@@ -50,16 +52,6 @@ class State
 	{
 		return this._exitHandlers;
 	}
-
-	/*public function addEnterHandler( handler : DynamicHandler ) : Bool
-	{
-		return this._addHandler( this._enterHandlers, handler );
-	}
-
-	public function addExitHandler( handler : DynamicHandler ) : Bool
-	{
-		return this._addHandler( this._exitHandlers, handler );
-	}*/
 	
 	public function addEnterHandler( scope : {}, callback : State->Void ) : Bool
 	{
@@ -80,53 +72,48 @@ class State
 	{
 		return this._removeHandler( this._exitHandlers, handler );
 	}
+	
+	public function addEnterCommandMapping( mapping : ICommandMapping ) : Void
+	{
+		if ( this._enterCommandMappings.indexOf( mapping ) == -1 ) this._enterCommandMappings.push( mapping );
+	}
+	
+	public function addExitCommandMapping( mapping : ICommandMapping ) : Void
+	{
+		if ( this._exitCommandMappings.indexOf( mapping ) == -1 ) this._exitCommandMappings.push( mapping );
+	}
+	
+	public function removeEnterCommandMapping( mapping : ICommandMapping ) : Void
+	{
+		var i : Int = this._enterCommandMappings.indexOf( mapping );
+		if ( i != -1 ) this._enterCommandMappings.splice( i, 1 );
+	}
+	
+	public function removeExitCommandMapping( mapping : ICommandMapping ) : Void
+	{
+		var i : Int = this._exitCommandMappings.indexOf( mapping );
+		if ( i != -1 ) this._exitCommandMappings.splice( i, 1 );
+	}
 
-	public function addEnterCommand( commandClass : Class<ICommand>, ?module : Module ) : ICommandMapping
+	public function addEnterCommand( commandClass : Class<ICommand>, ?contextOwner : IContextOwner ) : ICommandMapping
 	{
 		var mapping : ICommandMapping = new CommandMapping( commandClass );
-
-		if ( module != null )
-		{
-			mapping.setInjector( module.getBasicInjector() );
-		}
-
-		this._enterSubCommandMappings.push( mapping );
-
-		/*if ( this._stateMachine != null)
-		{
-			this._stateMachine.stateChanged( this );
-		}*/
-
+		mapping.setContextOwner( contextOwner );
+		this._enterCommandMappings.push( mapping );
 		return mapping;
 	}
 
-	public function addExitCommand( commandClass : Class<ICommand>, ?module : Module ) : ICommandMapping
+	public function addExitCommand( commandClass : Class<ICommand>, ?contextOwner : IContextOwner ) : ICommandMapping
 	{
 		var mapping : CommandMapping = new CommandMapping( commandClass );
-		
-		if ( module != null )
-		{
-			mapping.setInjector( module.getBasicInjector() );
-		}
-
-		this._exitSubCommandMappings.push( mapping );
-
-		/*if ( this._stateMachine != null)
-		 {
-		 this._stateMachine.stateChanged( this );
-		 }*/
-
+		mapping.setContextOwner( contextOwner );
+		this._exitCommandMappings.push( mapping );
 		return mapping;
 	}
 
-	public function addTransition( messageType : MessageType, targetState: State) : Void
+	public function addTransition( messageType : MessageType, targetState : State ) : Void
 	{
 		this._transitions.put( messageType, new Transition( this, messageType, targetState ) );
-
-		/*if ( this._stateMachine != null )
-		{
-			this._stateMachine.stateChanged( this );
-		}*/
 	}
 
 	public function getMachine() : StateMachine
@@ -177,12 +164,12 @@ class State
 
 	public function getEnterSubCommandMapping() : Array<ICommandMapping>
 	{
-		return this._enterSubCommandMappings;
+		return this._enterCommandMappings;
 	}
 
 	public function getExitSubCommandMapping() : Array<ICommandMapping>
 	{
-		return this._exitSubCommandMappings;
+		return this._exitCommandMappings;
 	}
 
 	public function toString() : String
@@ -216,5 +203,4 @@ class State
 			return false;
 		}
 	}
-	
 }
