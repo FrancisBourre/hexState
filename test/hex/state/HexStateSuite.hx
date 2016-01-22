@@ -6,6 +6,6 @@ package hex.state;
  */
 class HexStateSuite
 {
-	@suite( "HexState" )
+	@Suite( "HexState" )
     public var list : Array<Class<Dynamic>> = [StateMachineTest];
 }

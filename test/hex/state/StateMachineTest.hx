@@ -53,7 +53,7 @@ class StateMachineTest
 	private var logout				: MessageType;
 	private var logAsAdministrator	: MessageType;
 
-	@setUp
+	@Before
     public function setUp() : Void
     {
 		this._injector 		= new Injector();
@@ -104,19 +104,19 @@ class StateMachineTest
 		this._controller.handleMessage( messageType );
 	}
 
-    @tearDown
+    @After
     public function tearDown() : Void
     {
         this._stateMachine = null;
     }
 	
-	@test( "Test 'getStates' behavior" )
+	@Test( "Test 'getStates' behavior" )
     public function testGetStates() : Void
     {
 		Assert.equals( 4, this._stateMachine.getStates().length, "" );
 	}
 	
-	@test( "Test 'addResetMessageType' behavior" )
+	@Test( "Test 'addResetMessageType' behavior" )
 	public function testAddResetMessageType() : Void
 	{
 		Assert.isTrue( this._stateMachine.isResetMessageType( this.logout ), "'logout' should be reset messageType" );
@@ -128,7 +128,7 @@ class StateMachineTest
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
 	}
 	
-	@test( "Test StateController" )
+	@Test( "Test StateController" )
 	public function testStateController() : Void
 	{
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
@@ -140,7 +140,7 @@ class StateMachineTest
 		Assert.equals( this.user, this._controller.getCurrentState(), "'user' should be current state" );
 	}
 	
-	@test( "Test messages trigger state change with injection" )
+	@Test( "Test messages trigger state change with injection" )
 	public function testMessagesTriggerStateChangeWithInjection() : Void
 	{
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
@@ -158,14 +158,14 @@ class StateMachineTest
 		Assert.deepEquals( logs, this._commandLogger.getLogs(), "logs should be the same" );
 	}
 	
-	@test( "Test messages are ignored when there is no transition" )
+	@Test( "Test messages are ignored when there is no transition" )
 	public function testMessagesAreIgnoredWhenThereIsNoTransition() : Void
 	{
 		this._fireMessage( this.logAsAdministrator );
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
 	}
 	
-	@async( "Test asynchronous transitions with handlers" )
+	@Async( "Test asynchronous transitions with handlers" )
 	public function testAsyncTransitionsWithHandlers() : Void
 	{
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
@@ -188,7 +188,7 @@ class StateMachineTest
 		Assert.equals( this.guest, this._transitionListener.enterState, "'guest' should be enter state" );
 	}
 	
-	@test( "Test state change with payload" )
+	@Test( "Test state change with payload" )
 	public function testStateChangeWithPayload() : Void
 	{
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
@@ -213,7 +213,7 @@ class StateMachineTest
 		Assert.deepEquals( logs, this._commandLogger.getLogs(), "logs should be the same" );
 	}
 	
-	@test( "Test state change with module callback" )
+	@Test( "Test state change with module callback" )
 	public function testStateChangeWithModuleCallback() : Void
 	{
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
@@ -230,7 +230,7 @@ class StateMachineTest
 		Assert.equals( "B", moduleB.getName(), "module's name should be 'B'" );
 	}
 	
-	@test( "Test state change with module guards" )
+	@Test( "Test state change with module guards" )
 	public function testStateChangeWithGuards() : Void
 	{
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
