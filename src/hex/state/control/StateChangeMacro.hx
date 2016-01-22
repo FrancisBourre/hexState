@@ -3,7 +3,9 @@ package hex.state.control;
 import hex.control.macro.Macro;
 
 /**
- * ...
+ * This class is empty and used to override _prepare
+ * and be used with StateController
+ * 
  * @author Francis Bourre
  */
 class StateChangeMacro extends Macro
@@ -15,6 +17,6 @@ class StateChangeMacro extends Macro
 
 	override private function _prepare() : Void
 	{
-
+		//
 	}
 }
