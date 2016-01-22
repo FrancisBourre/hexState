@@ -58,9 +58,21 @@ class StateController
 		if ( mappings.length > 0 )
 		{
 			var sm : StateChangeMacro = this._injector.instantiateUnmapped( StateChangeMacro );
+			
+			var mappingToRemove : Array<ICommandMapping> = [];
 			for ( mapping in mappings )
 			{
+				if ( mapping.isFiredOnce )
+				{
+					mappingToRemove.push( mapping );
+				}
+				
 				sm.addMapping( mapping );
+			}
+			
+			for ( mapping in mappingToRemove )
+			{
+				mappings.splice( mappings.indexOf( mapping), 1 );
 			}
 
 			sm.addCompleteHandler( this, callback );
