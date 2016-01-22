@@ -11,10 +11,10 @@ import hex.data.IParser;
 @:rtti
 class AnotherMockCommandWithRequest extends BasicCommand
 {
-	@inject
+	@Inject
 	public var logger : IMockCommandLogger;
 	
-	@inject
+	@Inject
 	public var parser : IParser;
 	
 	override public function execute( ?request : Request ) : Void 

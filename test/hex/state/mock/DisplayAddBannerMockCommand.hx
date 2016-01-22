@@ -10,7 +10,7 @@ import hex.control.Request;
 @:rtti
 class DisplayAddBannerMockCommand extends BasicCommand
 {
-	@inject
+	@Inject
 	public var logger : IMockCommandLogger;
 
 	override public function execute( ?request : Request ) : Void

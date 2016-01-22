@@ -11,10 +11,10 @@ import hex.module.IModule;
 @:rtti
 class MockCommandWithStringInjection extends BasicCommand
 {
-	@inject
+	@Inject
 	public var module : IModule;
 
-	@inject
+	@Inject
 	public var name : String;
 	
 	override public function execute( ?request : Request ) : Void 
