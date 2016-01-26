@@ -20,7 +20,7 @@ class State
 	var _stateName 					: String;
 	var _stateMachine 				: StateMachine;
 
-	var _transitions				: HashMap<MessageType, Transition> = new HashMap();
+	var _transitions				= new HashMap<MessageType,Transition>();
 
 	var _enterCommandMappings 	: Array<ICommandMapping> = [];
 	var _exitCommandMappings 	: Array<ICommandMapping> = [];
@@ -97,7 +97,7 @@ class State
 
 	public function addEnterCommand( commandClass : Class<ICommand>, ?contextOwner : IContextOwner ) : ICommandMapping
 	{
-		var mapping : ICommandMapping = new CommandMapping( commandClass );
+		var mapping = new CommandMapping( commandClass );
 		mapping.setContextOwner( contextOwner );
 		this._enterCommandMappings.push( mapping );
 		return mapping;
@@ -105,7 +105,7 @@ class State
 
 	public function addExitCommand( commandClass : Class<ICommand>, ?contextOwner : IContextOwner ) : ICommandMapping
 	{
-		var mapping : CommandMapping = new CommandMapping( commandClass );
+		var mapping = new CommandMapping( commandClass );
 		mapping.setContextOwner( contextOwner );
 		this._exitCommandMappings.push( mapping );
 		return mapping;

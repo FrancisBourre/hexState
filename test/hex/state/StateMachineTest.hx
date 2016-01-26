@@ -133,7 +133,7 @@ class StateMachineTest
 	{
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
 
-		var dispatcher : Dispatcher<StateController> = new Dispatcher();
+		var dispatcher = new Dispatcher<StateController>();
 		dispatcher.addListener( this._controller );
 
 		dispatcher.dispatch( this.logAsUser );
@@ -194,7 +194,7 @@ class StateMachineTest
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
 		
 		this.anonymous.addExitCommand( MockCommandWithRequest );
-		var mockStringRequest : MockRequest = new MockRequest( [new ExecutionPayload(new MockCaseParser(), IParser)] );
+		var mockStringRequest = new MockRequest( [new ExecutionPayload(new MockCaseParser(), IParser)] );
 		mockStringRequest.code = "cwr";
 
 		this._controller.handleMessage( this.logAsUser, mockStringRequest );
@@ -218,8 +218,8 @@ class StateMachineTest
 	{
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
 
-		var moduleA : MockModuleWithStringParameter = new MockModuleWithStringParameter( "A" );
-		var moduleB : MockModuleWithStringParameter = new MockModuleWithStringParameter( "B" );
+		var moduleA = new MockModuleWithStringParameter( "A" );
+		var moduleB = new MockModuleWithStringParameter( "B" );
 
 		this.anonymous.addExitCommand( MockCommandWithStringInjection, moduleA );
 		this.anonymous.addExitCommand( MockCommandWithStringInjection, moduleB );
