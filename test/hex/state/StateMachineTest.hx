@@ -35,23 +35,23 @@ import hex.unittest.runner.MethodRunner;
  */
 class StateMachineTest
 {
-	private var _injector			: Injector;
-	private var _stateMachine 		: StateMachine;
-	private var _controller			: StateController;
-	private var _commandLogger		: IMockCommandLogger;
-	private var _transitionListener	: MockTransitionListener;
+	var _injector			: Injector;
+	var _stateMachine 		: StateMachine;
+	var _controller			: StateController;
+	var _commandLogger		: IMockCommandLogger;
+	var _transitionListener	: MockTransitionListener;
 	
 	// States
-	private var anonymous			: State;
-	private var guest				: State;
-	private var user				: State;
-	private var administrator		: State;
+	var anonymous			: State;
+	var guest				: State;
+	var user				: State;
+	var administrator		: State;
 	
 	// MessageTypes
-	private var logAsUser			: MessageType;
-	private var logAsGuest			: MessageType;
-	private var logout				: MessageType;
-	private var logAsAdministrator	: MessageType;
+	var logAsUser			: MessageType;
+	var logAsGuest			: MessageType;
+	var logout				: MessageType;
+	var logAsAdministrator	: MessageType;
 
 	@Before
     public function setUp() : Void
@@ -99,7 +99,7 @@ class StateMachineTest
 		this._stateMachine.addResetMessageType( [ this.logout ] );
     }
 	
-	private function _fireMessage( messageType : MessageType ) : Void
+	function _fireMessage( messageType : MessageType ) : Void
 	{
 		this._controller.handleMessage( messageType );
 	}
@@ -182,7 +182,7 @@ class StateMachineTest
 		Timer.delay( MethodRunner.asyncHandler( this._onCompleteTestAsyncTransitionsWithHandlers ), 200 );
 	}
 	
-	private function _onCompleteTestAsyncTransitionsWithHandlers() : Void
+	function _onCompleteTestAsyncTransitionsWithHandlers() : Void
 	{
 		Assert.equals( this.anonymous, this._transitionListener.exitState, "'anonymous' should be exit state" );
 		Assert.equals( this.guest, this._transitionListener.enterState, "'guest' should be enter state" );
@@ -246,7 +246,7 @@ class StateMachineTest
 
 private class MockTransitionListener
 {
-	private var _controller	: StateController;
+	var _controller	: StateController;
 	
 	public var exitState 	: State;
 	public var enterState 	: State;

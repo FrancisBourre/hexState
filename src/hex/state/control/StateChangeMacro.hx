@@ -15,7 +15,7 @@ class StateChangeMacro extends Macro
 		super();
 	}
 
-	override private function _prepare() : Void
+	override function _prepare() : Void
 	{
 		//
 	}

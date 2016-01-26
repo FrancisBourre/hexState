@@ -8,9 +8,9 @@ import hex.event.MessageType;
  */
 class Transition
 {
-	private var _source 		: State;
-	private var _target 		: State;
-	private var _messageType 	: MessageType;
+	var _source 		: State;
+	var _target 		: State;
+	var _messageType 	: MessageType;
 
 	public function new( source : State, messageType : MessageType, target : State )
 	{

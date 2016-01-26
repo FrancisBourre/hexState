@@ -12,9 +12,9 @@ import hex.state.control.StateController;
  */
 class StatefulStateMachineConfig implements IStatefulConfig
 {
-	private var _stateMachine 		: StateMachine;
-	private var _stateController 	: StateController;
-	private var _startState 		: State;
+	var _stateMachine 		: StateMachine;
+	var _stateController 	: StateController;
+	var _startState 		: State;
 
 	public function new( startState : State ) 
 	{

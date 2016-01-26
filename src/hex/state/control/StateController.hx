@@ -14,14 +14,14 @@ import hex.state.control.StateChangeMacro;
  */
 class StateController
 {
-	private var _injector				: IDependencyInjector;
+	var _injector				: IDependencyInjector;
 
-	private var _stateMachine			: StateMachine;
-	private var _isInTransition			: Bool;
-	private var _currentState			: State;
-	private var _targetState			: State;
+	var _stateMachine			: StateMachine;
+	var _isInTransition			: Bool;
+	var _currentState			: State;
+	var _targetState			: State;
 
-	private var _request				: Request;
+	var _request				: Request;
 
 	public function new( injector : IDependencyInjector, stateMachine : StateMachine )
 	{
@@ -32,7 +32,7 @@ class StateController
 		this._isInTransition 	= false;
 	}
 
-	private function transitionTo( target : State, ?request : Request ) : Void
+	function transitionTo( target : State, ?request : Request ) : Void
 	{
 		if ( this._isInTransition )
 		{
@@ -53,7 +53,7 @@ class StateController
 		}
 	}
 
-	private function _triggerCommand( mappings : Array<ICommandMapping>, callback : AsyncCommand->Void ) : Void
+	function _triggerCommand( mappings : Array<ICommandMapping>, callback : AsyncCommand->Void ) : Void
 	{
 		if ( mappings.length > 0 )
 		{
@@ -104,12 +104,12 @@ class StateController
 		return this._currentState;
 	}
 
-	private function _onExitCurrentState( cmd : AsyncCommand ) : Void
+	function _onExitCurrentState( cmd : AsyncCommand ) : Void
 	{
 		this._triggerCommand( this._targetState.getEnterSubCommandMapping(), this._onEnterTargetState );
 	}
 
-	private function _onEnterTargetState( cmd : AsyncCommand ) : Void
+	function _onEnterTargetState( cmd : AsyncCommand ) : Void
 	{
 		if ( this._request != null )
 		{
@@ -121,7 +121,7 @@ class StateController
 		this._dispatchStateChange( this._currentState, this._currentState.getEnterHandlerList() );
 	}
 
-	private function _dispatchStateChange( state : State, handlers : Array<BasicHandler> ) : Void
+	function _dispatchStateChange( state : State, handlers : Array<BasicHandler> ) : Void
 	{
 		for ( handler in handlers )
 		{

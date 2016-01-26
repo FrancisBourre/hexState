@@ -20,7 +20,7 @@ class InviteForRegisterMockCommand extends AsyncCommand
 		Timer.delay( this._execute, 50 );
 	}
 	
-	private function _execute() : Void
+	function _execute() : Void
 	{
 		this.logger.log( "IFR" );
 		this._handleComplete();

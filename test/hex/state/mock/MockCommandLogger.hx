@@ -6,7 +6,7 @@ package hex.state.mock;
  */
 class MockCommandLogger implements IMockCommandLogger
 {
-	private var _logs : Array<String> = [];
+	var _logs : Array<String> = [];
 	
 	public function new() 
 	{

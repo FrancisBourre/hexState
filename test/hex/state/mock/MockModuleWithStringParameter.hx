@@ -8,7 +8,7 @@ import hex.module.Module;
  */
 class MockModuleWithStringParameter extends Module
 {
-	private var _name : String;
+	var _name : String;
 	
 	public function new( name : String ) 
 	{

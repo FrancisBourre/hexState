@@ -8,7 +8,7 @@ import hex.event.MessageType;
  */
 class StateMachine
 {
-	private var _start : State;
+	var _start : State;
 
 	public function new( start : State )
 	{
@@ -26,7 +26,7 @@ class StateMachine
 		}
 	}
 
-	private function _addResetMessageType_byAddingTransition( messageType : MessageType ) : Void
+	function _addResetMessageType_byAddingTransition( messageType : MessageType ) : Void
 	{
 		var states : Array<State> = this.getStates();
 
@@ -46,7 +46,7 @@ class StateMachine
 		return result;
 	}
 
-	private function _collectStates( result : Array<State>, state : State ) : Void
+	function _collectStates( result : Array<State>, state : State ) : Void
 	{
 		if ( this._start == null || result.indexOf( state ) != -1 )
 		{

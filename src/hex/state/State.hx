@@ -17,16 +17,16 @@ import hex.module.Module;
  */
 class State
 {
-	private var _stateName 					: String;
-	private var _stateMachine 				: StateMachine;
+	var _stateName 					: String;
+	var _stateMachine 				: StateMachine;
 
-	private var _transitions				: HashMap<MessageType, Transition> = new HashMap();
+	var _transitions				: HashMap<MessageType, Transition> = new HashMap();
 
-	private var _enterCommandMappings 	: Array<ICommandMapping> = [];
-	private var _exitCommandMappings 	: Array<ICommandMapping> = [];
+	var _enterCommandMappings 	: Array<ICommandMapping> = [];
+	var _exitCommandMappings 	: Array<ICommandMapping> = [];
 
-	private var _enterHandlers 				: Array<BasicHandler> = [];
-	private var _exitHandlers 				: Array<BasicHandler> = [];
+	var _enterHandlers 				: Array<BasicHandler> = [];
+	var _exitHandlers 				: Array<BasicHandler> = [];
 
 	public function new( stateName : String )
 	{
@@ -177,7 +177,7 @@ class State
 		return Stringifier.stringify( this ) + "::" + this._stateName;
 	}
 
-	private function _addHandler( handlers : Array<BasicHandler>, handler : BasicHandler ) : Bool
+	function _addHandler( handlers : Array<BasicHandler>, handler : BasicHandler ) : Bool
 	{
 		if ( handlers.indexOf( handler ) == -1 )
 		{
@@ -190,7 +190,7 @@ class State
 		}
 	}
 
-	private function _removeHandler( handlers : Array<BasicHandler>, handler : BasicHandler ) : Bool
+	function _removeHandler( handlers : Array<BasicHandler>, handler : BasicHandler ) : Bool
 	{
 		var id : Int = handlers.indexOf( handler );
 		if (  id != -1 )
