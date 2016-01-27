@@ -19,7 +19,7 @@ class StateController
 	var _stateMachine			: StateMachine;
 	var _isInTransition			: Bool;
 	var _currentState			: State;
-	var _targetState			: State;
+	var _targetedState			: State;
 
 	var _request				: Request;
 
@@ -47,7 +47,7 @@ class StateController
 				this._request 	= request;
 			}
 
-			this._targetState 		= target;
+			this._targetedState 		= target;
 			this._dispatchStateChange( this._currentState, this._currentState.getExitHandlerList() );
 			this._triggerCommand( this._currentState.getExitSubCommandMapping(), this._onExitCurrentState );
 		}
@@ -103,10 +103,15 @@ class StateController
 	{
 		return this._currentState;
 	}
+	
+	public function getTargetedState() : State
+	{
+		return this._targetedState;
+	}
 
 	function _onExitCurrentState( cmd : AsyncCommand ) : Void
 	{
-		this._triggerCommand( this._targetState.getEnterSubCommandMapping(), this._onEnterTargetState );
+		this._triggerCommand( this._targetedState.getEnterSubCommandMapping(), this._onEnterTargetState );
 	}
 
 	function _onEnterTargetState( cmd : AsyncCommand ) : Void
@@ -116,7 +121,7 @@ class StateController
 			this._request = null;
 		}
 
-		this._currentState = this._targetState;
+		this._currentState = this._targetedState;
 		this._isInTransition = false;
 		this._dispatchStateChange( this._currentState, this._currentState.getEnterHandlerList() );
 	}
