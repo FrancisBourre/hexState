@@ -162,12 +162,12 @@ class State
 		return this._transitions.get( messageType ).getTarget();
 	}
 
-	public function getEnterSubCommandMapping() : Array<ICommandMapping>
+	public function getEnterCommandMapping() : Array<ICommandMapping>
 	{
 		return this._enterCommandMappings;
 	}
 
-	public function getExitSubCommandMapping() : Array<ICommandMapping>
+	public function getExitCommandMapping() : Array<ICommandMapping>
 	{
 		return this._exitCommandMappings;
 	}

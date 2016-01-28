@@ -49,7 +49,7 @@ class StateController
 
 			this._targetedState 		= target;
 			this._dispatchStateChange( this._currentState, this._currentState.getExitHandlerList() );
-			this._triggerCommand( this._currentState.getExitSubCommandMapping(), this._onExitCurrentState );
+			this._triggerCommand( this._currentState.getExitCommandMapping(), this._onExitCurrentState );
 		}
 	}
 
@@ -111,7 +111,7 @@ class StateController
 
 	function _onExitCurrentState( cmd : AsyncCommand ) : Void
 	{
-		this._triggerCommand( this._targetedState.getEnterSubCommandMapping(), this._onEnterTargetState );
+		this._triggerCommand( this._targetedState.getEnterCommandMapping(), this._onEnterTargetState );
 	}
 
 	function _onEnterTargetState( cmd : AsyncCommand ) : Void
