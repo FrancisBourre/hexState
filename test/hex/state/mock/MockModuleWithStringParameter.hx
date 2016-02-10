@@ -12,8 +12,6 @@ class MockModuleWithStringParameter extends Module
 	
 	public function new( name : String ) 
 	{
-		Module.registerInternalDomain( this );
-		
 		super();
 		this.getBasicInjector().mapToValue( String, name );
 	}
