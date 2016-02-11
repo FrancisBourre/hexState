@@ -1,0 +1,28 @@
+{
+  "name": "hexstate",
+  "version": "1.0.0",
+  "description": "State machine written in Haxe",
+  
+  "directories": {
+    "src": "src",
+	"test": "test" 
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoclerLabs/hexState.git"
+  },
+  "keywords": [
+    "haxe",
+    "statemachine",
+    "hexmachina"
+  ],
+  "author": "DoclerLabs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DoclerLabs/hexState/issues"
+  },
+  "homepage": "https://github.com/DoclerLabs/hexState#readme"
+}
