@@ -5,6 +5,8 @@
 -cp /home/travis/hexcore/test
 -cp /home/travis/hexinject/src
 -cp /home/travis/hexinject/test
+-cp /home/travis/hexservice/src
+-cp /home/travis/hexservice/test
 -cp /home/travis/hexmvc/src
 -cp /home/travis/hexmvc/test
 -cp /home/travis/hexunit/src
