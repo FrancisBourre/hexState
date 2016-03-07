@@ -10,8 +10,8 @@
   "url": "https://github.com/DoclerLabs/hexState",
   "dependencies": 
   {
-	"hexcore": "",
-	"hexinject": "",
-	"hexmvc": ""
+	"hexcore": "git:https://github.com/DoclerLabs/hexCore.git",
+	"hexinject": "git:https://github.com/DoclerLabs/hexInject.git",
+	"hexmvc": "git:https://github.com/DoclerLabs/hexMVC.git"
   }
 }
