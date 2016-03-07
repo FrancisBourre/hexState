@@ -1,0 +1,17 @@
+{
+  "name": "hexstate",
+  "license": "MIT",
+  "classPath": "src",
+  "tags": ["hexmachina", "mvc", "oop"],
+  "description": "State machine written in Haxe",
+  "contributors": ["doclerlabs"],
+  "releasenote": "First release. Still alpha testing",
+  "version": "0.1.0",
+  "url": "https://github.com/DoclerLabs/hexState",
+  "dependencies": 
+  {
+	"hexcore": "",
+	"hexinject": "",
+	"hexmvc": ""
+  }
+}
