@@ -1,9 +1,9 @@
 package hex.state.control;
 
+import hex.control.Request;
 import hex.control.async.AsyncCommand;
 import hex.control.command.ICommandMapping;
-import hex.control.Request;
-import hex.di.IDependencyInjector;
+import hex.di.IBasicInjector;
 import hex.event.BasicHandler;
 import hex.event.MessageType;
 import hex.state.control.StateChangeMacro;
@@ -14,7 +14,7 @@ import hex.state.control.StateChangeMacro;
  */
 class StateController
 {
-	var _injector				: IDependencyInjector;
+	var _injector				: IBasicInjector;
 
 	var _stateMachine			: StateMachine;
 	var _isInTransition			: Bool;
@@ -23,7 +23,7 @@ class StateController
 
 	var _request				: Request;
 
-	public function new( injector : IDependencyInjector, stateMachine : StateMachine )
+	public function new( injector : IBasicInjector, stateMachine : StateMachine )
 	{
 		this._injector 			= injector;
 
