@@ -1,5 +1,6 @@
 package hex.state.mock;
 
+import hex.di.ISpeedInjectorContainer;
 import hex.control.command.BasicCommand;
 import hex.control.Request;
 import hex.data.IParser;
@@ -8,8 +9,7 @@ import hex.data.IParser;
  * ...
  * @author Francis Bourre
  */
-@:rtti
-class MockCommandWithRequest extends BasicCommand
+class MockCommandWithRequest extends BasicCommand implements ISpeedInjectorContainer
 {
 	@Inject
 	public var logger : IMockCommandLogger;

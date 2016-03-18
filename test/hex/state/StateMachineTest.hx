@@ -1,5 +1,6 @@
 package hex.state;
 
+import hex.di.SpeedInjector;
 import haxe.Timer;
 import hex.control.macro.IMacroExecutor;
 import hex.control.macro.MacroExecutor;
@@ -8,7 +9,6 @@ import hex.data.IParser;
 import hex.di.IBasicInjector;
 import hex.event.Dispatcher;
 import hex.event.MessageType;
-import hex.inject.Injector;
 import hex.state.control.StateController;
 import hex.state.mock.AnotherMockCommandWithRequest;
 import hex.state.mock.DeleteAllCookiesMockCommand;
@@ -35,7 +35,7 @@ import hex.unittest.runner.MethodRunner;
  */
 class StateMachineTest
 {
-	var _injector			: Injector;
+	var _injector			: SpeedInjector;
 	var _stateMachine 		: StateMachine;
 	var _controller			: StateController;
 	var _commandLogger		: IMockCommandLogger;
@@ -56,7 +56,7 @@ class StateMachineTest
 	@Before
     public function setUp() : Void
     {
-		this._injector 		= new Injector();
+		this._injector 		= new SpeedInjector();
 		this._commandLogger = new MockCommandLogger();
 		
 		this._injector.map( IMockCommandLogger ).toValue( this._commandLogger );

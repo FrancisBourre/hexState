@@ -1,5 +1,6 @@
 package hex.state.mock;
 
+import hex.di.ISpeedInjectorContainer;
 import hex.control.command.BasicCommand;
 import hex.control.Request;
 
@@ -7,8 +8,7 @@ import hex.control.Request;
  * ...
  * @author Francis Bourre
  */
-@:rtti
-class DeleteAllCookiesMockCommand extends BasicCommand
+class DeleteAllCookiesMockCommand extends BasicCommand implements ISpeedInjectorContainer
 {
 	@Inject
 	public var logger : IMockCommandLogger;

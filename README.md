@@ -5,9 +5,10 @@ State machine written in Haxe
 ## Dependencies
 
 * [hexCore](https://github.com/DoclerLabs/hexCore)
-* [hexInject](https://github.com/DoclerLabs/hexInject)
+* [hexAnnotation](https://github.com/DoclerLabs/hexAnnotation)
+* [hexSpeedInject](https://github.com/DoclerLabs/hexSpeedInject)
 * [hexMVC](https://github.com/DoclerLabs/hexMVC)
-	
+
 
 ## Simple example
 ```haxe
