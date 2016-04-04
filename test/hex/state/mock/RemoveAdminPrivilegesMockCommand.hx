@@ -1,14 +1,14 @@
 package hex.state.mock;
 
-import hex.di.ISpeedInjectorContainer;
-import hex.control.command.BasicCommand;
 import hex.control.Request;
+import hex.control.command.BasicCommand;
+import hex.di.IInjectorContainer;
 
 /**
  * ...
  * @author Francis Bourre
  */
-class RemoveAdminPrivilegesMockCommand extends BasicCommand implements ISpeedInjectorContainer
+class RemoveAdminPrivilegesMockCommand extends BasicCommand implements IInjectorContainer
 {
 	@Inject
 	public var logger : IMockCommandLogger;

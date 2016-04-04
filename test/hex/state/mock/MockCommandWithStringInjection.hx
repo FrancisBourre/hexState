@@ -1,15 +1,15 @@
 package hex.state.mock;
 
-import hex.di.ISpeedInjectorContainer;
-import hex.control.command.BasicCommand;
 import hex.control.Request;
+import hex.control.command.BasicCommand;
+import hex.di.IInjectorContainer;
 import hex.module.IModule;
 
 /**
  * ...
  * @author Francis Bourre
  */
-class MockCommandWithStringInjection extends BasicCommand implements ISpeedInjectorContainer
+class MockCommandWithStringInjection extends BasicCommand implements IInjectorContainer
 {
 	@Inject
 	public var module : IModule;

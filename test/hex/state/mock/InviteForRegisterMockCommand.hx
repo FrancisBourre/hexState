@@ -1,15 +1,15 @@
 package hex.state.mock;
 
-import hex.di.ISpeedInjectorContainer;
 import haxe.Timer;
-import hex.control.async.AsyncCommand;
 import hex.control.Request;
+import hex.control.async.AsyncCommand;
+import hex.di.IInjectorContainer;
 
 /**
  * ...
  * @author Francis Bourre
  */
-class InviteForRegisterMockCommand extends AsyncCommand implements ISpeedInjectorContainer
+class InviteForRegisterMockCommand extends AsyncCommand implements IInjectorContainer
 {
 	@Inject
 	public var logger : IMockCommandLogger;
