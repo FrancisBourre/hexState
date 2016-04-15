@@ -14,7 +14,7 @@ class InviteForRegisterMockCommand extends AsyncCommand implements IInjectorCont
 	@Inject
 	public var logger : IMockCommandLogger;
 
-	override public function execute( ?request : Request ) : Void
+	public function execute( ?request : Request ) : Void
 	{
 		Timer.delay( this._execute, 50 );
 	}

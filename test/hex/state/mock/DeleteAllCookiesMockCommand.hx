@@ -13,7 +13,7 @@ class DeleteAllCookiesMockCommand extends BasicCommand implements IInjectorConta
 	@Inject
 	public var logger : IMockCommandLogger;
 
-	override public function execute( ?request : Request ) : Void
+	public function execute( ?request : Request ) : Void
 	{
 		this.logger.log( "DAC" );
 	}

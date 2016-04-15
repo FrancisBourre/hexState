@@ -17,7 +17,7 @@ class MockCommandWithRequest extends BasicCommand implements IInjectorContainer
 	@Inject
 	public var parser : IParser;
 	
-	override public function execute( ?request : Request ) : Void 
+	public function execute( ?request : Request ) : Void 
 	{
 		this.logger.log( this.parser.parse( ( cast request ).code ) );
 	}

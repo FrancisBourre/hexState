@@ -17,7 +17,7 @@ class MockCommandWithStringInjection extends BasicCommand implements IInjectorCo
 	@Inject
 	public var name : String;
 	
-	override public function execute( ?request : Request ) : Void 
+	public function execute( ?request : Request ) : Void 
 	{
 		var module : MockModuleWithStringParameter = cast this.module;
 		module.setName( name );

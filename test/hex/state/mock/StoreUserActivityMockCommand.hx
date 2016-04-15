@@ -13,7 +13,7 @@ class StoreUserActivityMockCommand extends BasicCommand implements IInjectorCont
 	@Inject
 	public var logger : IMockCommandLogger;
 
-	override public function execute( ?request : Request ) : Void
+	public function execute( ?request : Request ) : Void
 	{
 		this.logger.log( "SUA" );
 	}

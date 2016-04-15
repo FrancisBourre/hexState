@@ -17,7 +17,7 @@ class AnotherMockCommandWithRequest extends BasicCommand implements IInjectorCon
 	@Inject
 	public var parser : IParser;
 	
-	override public function execute( ?request : Request ) : Void 
+	public function execute( ?request : Request ) : Void 
 	{
 		( cast request ).method( this.parser.parse( ( cast request ).code ) );
 	}

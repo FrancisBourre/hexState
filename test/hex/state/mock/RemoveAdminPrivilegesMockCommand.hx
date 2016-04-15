@@ -13,7 +13,7 @@ class RemoveAdminPrivilegesMockCommand extends BasicCommand implements IInjector
 	@Inject
 	public var logger : IMockCommandLogger;
 
-	override public function execute( ?request : Request ) : Void
+	public function execute( ?request : Request ) : Void
 	{
 		this.logger.log( "RAP" );
 	}
