@@ -9,7 +9,6 @@ import hex.di.IContextOwner;
 import hex.event.BasicHandler;
 import hex.event.MessageType;
 import hex.log.Stringifier;
-import hex.module.Module;
 
 /**
  * ...
