@@ -15,7 +15,7 @@ class AnotherMockCommandWithRequest extends BasicCommand implements IInjectorCon
 	public var logger : IMockCommandLogger;
 	
 	@Inject
-	public var parser : IParser;
+	public var parser : IParser<String>;
 	
 	public function execute( ?request : Request ) : Void 
 	{
