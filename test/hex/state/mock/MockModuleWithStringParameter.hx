@@ -13,7 +13,7 @@ class MockModuleWithStringParameter extends Module
 	public function new( name : String ) 
 	{
 		super();
-		this.getBasicInjector().mapToValue( String, name );
+		this.getInjector().mapToValue( String, name );
 	}
 	
 	public function setName( name : String ) : Void

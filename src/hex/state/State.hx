@@ -4,7 +4,6 @@ import hex.collection.HashMap;
 import hex.control.command.CommandMapping;
 import hex.control.command.ICommand;
 import hex.control.command.ICommandMapping;
-import hex.di.IBasicInjector;
 import hex.di.IContextOwner;
 import hex.event.BasicHandler;
 import hex.event.MessageType;
