@@ -1,6 +1,5 @@
 package hex.state;
 
-import hex.collection.HashMap;
 import hex.control.command.CommandMapping;
 import hex.control.command.ICommand;
 import hex.control.command.ICommandMapping;
@@ -18,7 +17,7 @@ class State
 	var _stateName 					: String;
 	var _stateMachine 				: StateMachine;
 
-	var _transitions				= new HashMap<MessageType,Transition>();
+	var _transitions				= new Map<MessageType,Transition>();
 
 	var _enterCommandMappings 	: Array<ICommandMapping> = [];
 	var _exitCommandMappings 	: Array<ICommandMapping> = [];
@@ -111,7 +110,7 @@ class State
 
 	public function addTransition( messageType : MessageType, targetState : State ) : Void
 	{
-		this._transitions.put( messageType, new Transition( this, messageType, targetState ) );
+		this._transitions.set( messageType, new Transition( this, messageType, targetState ) );
 	}
 
 	public function getMachine() : StateMachine
@@ -121,7 +120,7 @@ class State
 
 	public function getEvents() : Array<MessageType>
 	{
-		var transitions : Array<Transition> = this._transitions.getValues();
+		var transitions : Array<Transition> = this.getTransitions();
 		var result : Array<MessageType> 	= [];
 
 		for ( transition in transitions )
@@ -134,7 +133,7 @@ class State
 
 	public function getAllTargets() : Array<State>
 	{
-		var transitions : Array<Transition> = this._transitions.getValues();
+		var transitions : Array<Transition> = this.getTransitions();
 		var result : Array<State> 	= [];
 
 		for ( transition in transitions )
@@ -147,12 +146,15 @@ class State
 
 	public function getTransitions() : Array<Transition>
 	{
-		return this._transitions.getValues();
+		var i = this._transitions.iterator();
+		var a = [];
+		while ( i.hasNext() ) a.push( i.next() );
+		return a;
 	}
 
 	public function hasTransition( messageType : MessageType ) : Bool
 	{
-		return this._transitions.containsKey( messageType );
+		return this._transitions.exists( messageType );
 	}
 
 	public function targetState( messageType : MessageType ) : State
