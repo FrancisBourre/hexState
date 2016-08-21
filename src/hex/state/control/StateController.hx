@@ -12,6 +12,7 @@ import hex.state.control.StateChangeMacro;
  * ...
  * @author Francis Bourre
  */
+@:keepSub
 class StateController
 {
 	var _injector				: IBasicInjector;
