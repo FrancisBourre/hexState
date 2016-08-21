@@ -1,7 +1,7 @@
 package hex.state.control;
 
 import hex.control.Request;
-import hex.control.async.AsyncCommand;
+import hex.control.async.IAsyncCommand;
 import hex.control.command.ICommandMapping;
 import hex.di.IBasicInjector;
 import hex.event.BasicHandler;
@@ -54,7 +54,7 @@ class StateController
 		}
 	}
 
-	function _triggerCommand( mappings : Array<ICommandMapping>, callback : AsyncCommand->Void ) : Void
+	function _triggerCommand( mappings : Array<ICommandMapping>, callback : IAsyncCommand->Void ) : Void
 	{
 		if ( mappings.length > 0 )
 		{
@@ -110,12 +110,12 @@ class StateController
 		return this._targetedState;
 	}
 
-	function _onExitCurrentState( cmd : AsyncCommand ) : Void
+	function _onExitCurrentState( cmd : IAsyncCommand ) : Void
 	{
 		this._triggerCommand( this._targetedState.getEnterCommandMapping(), this._onEnterTargetState );
 	}
 
-	function _onEnterTargetState( cmd : AsyncCommand ) : Void
+	function _onEnterTargetState( cmd : IAsyncCommand ) : Void
 	{
 		if ( this._request != null )
 		{
