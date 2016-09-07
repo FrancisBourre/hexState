@@ -76,9 +76,9 @@ class StateController
 				mappings.splice( mappings.indexOf( mapping), 1 );
 			}
 
-			sm.addCompleteHandler( this, callback );
-			sm.addFailHandler( this, callback );
-			sm.addCancelHandler( this, callback );
+			sm.addCompleteHandler( callback );
+			sm.addFailHandler( callback );
+			sm.addCancelHandler( callback );
 			sm.preExecute( this._request );
 			sm.execute( this._request );
 		}
