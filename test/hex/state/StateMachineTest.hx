@@ -235,8 +235,8 @@ class StateMachineTest
 	{
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
 		
-		this.user.addExitCommand( PrepareUserInfosMockCommand ).withGuards( [ function approve() : Bool { return false; } ] );
-		this.user.addEnterCommand( PrepareUserInfosMockCommand ).withGuards( [ function approve() : Bool { return false; } ] );
+		this.user.addExitCommand( PrepareUserInfosMockCommand ).withGuard( function approve() : Bool { return false; } );
+		this.user.addEnterCommand( PrepareUserInfosMockCommand ).withGuard( function approve() : Bool { return false; } );
 		
 		this._fireMessage( this.logAsUser );
 		
