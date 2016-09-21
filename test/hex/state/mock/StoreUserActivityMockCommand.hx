@@ -2,13 +2,12 @@ package hex.state.mock;
 
 import hex.control.Request;
 import hex.control.command.BasicCommand;
-import hex.di.IInjectorContainer;
 
 /**
  * ...
  * @author Francis Bourre
  */
-class StoreUserActivityMockCommand extends BasicCommand implements IInjectorContainer
+class StoreUserActivityMockCommand extends BasicCommand
 {
 	@Inject
 	public var logger : IMockCommandLogger;
