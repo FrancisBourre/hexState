@@ -4,7 +4,6 @@ import hex.control.Request;
 import hex.control.async.IAsyncCommand;
 import hex.control.command.ICommandMapping;
 import hex.di.IBasicInjector;
-import hex.event.BasicHandler;
 import hex.event.MessageType;
 import hex.state.control.StateChangeMacro;
 
@@ -127,11 +126,11 @@ class StateController
 		this._dispatchStateChange( this._currentState, this._currentState.getEnterHandlerList() );
 	}
 
-	function _dispatchStateChange( state : State, handlers : Array<BasicHandler> ) : Void
+	function _dispatchStateChange( state : State, callbacks : Array<State->Void> ) : Void
 	{
-		for ( handler in handlers )
+		for ( callback in callbacks )
 		{
-			Reflect.callMethod( handler.scope, handler.callback, [ state ] );
+			callback( state );
 		}
 	}
 }

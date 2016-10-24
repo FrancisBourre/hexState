@@ -4,7 +4,6 @@ import hex.control.command.CommandMapping;
 import hex.control.command.ICommand;
 import hex.control.command.ICommandMapping;
 import hex.di.IContextOwner;
-import hex.event.BasicHandler;
 import hex.event.MessageType;
 import hex.log.Stringifier;
 
@@ -19,15 +18,20 @@ class State
 
 	var _transitions				= new Map<MessageType,Transition>();
 
-	var _enterCommandMappings 	: Array<ICommandMapping> = [];
-	var _exitCommandMappings 	: Array<ICommandMapping> = [];
+	var _enterCommandMappings 		: Array<ICommandMapping> = [];
+	var _exitCommandMappings 		: Array<ICommandMapping> = [];
 
-	var _enterHandlers 				: Array<BasicHandler> = [];
-	var _exitHandlers 				: Array<BasicHandler> = [];
+	var _enterHandlers 				: Array<State->Void> = [];
+	var _exitHandlers 				: Array<State->Void> = [];
 
 	public function new( stateName : String )
 	{
 		this._stateName = stateName;
+	}
+	
+	inline public function getName() : String
+	{
+		return this._stateName;
 	}
 
 	public function clearEnterHandler() : Void
@@ -40,34 +44,34 @@ class State
 		this._exitHandlers = [];
 	}
 
-	public function getEnterHandlerList() : Array<BasicHandler>
+	public function getEnterHandlerList() : Array<State->Void>
 	{
 		return this._enterHandlers;
 	}
 
-	public function getExitHandlerList() : Array<BasicHandler>
+	public function getExitHandlerList() : Array<State->Void>
 	{
 		return this._exitHandlers;
 	}
 	
-	public function addEnterHandler( scope : {}, callback : State->Void ) : Bool
+	public function addEnterHandler( callback : State->Void ) : Bool
 	{
-		return this._addHandler( this._enterHandlers, new BasicHandler( scope, callback ) );
+		return this._addHandler( this._enterHandlers, callback );
 	}
 
-	public function addExitHandler( scope : {}, callback : State->Void ) : Bool
+	public function addExitHandler( callback : State->Void ) : Bool
 	{
-		return this._addHandler( this._exitHandlers, new BasicHandler( scope, callback ) );
+		return this._addHandler( this._exitHandlers, callback );
 	}
 
-	public function removeEnterHandler( handler : BasicHandler ) : Bool
+	public function removeEnterHandler( callback: State->Void ) : Bool
 	{
-		return this._removeHandler( this._enterHandlers, handler );
+		return this._removeHandler( this._enterHandlers, callback );
 	}
 
-	public function removeExitHandler( handler : BasicHandler ) : Bool
+	public function removeExitHandler( callback: State->Void ) : Bool
 	{
-		return this._removeHandler( this._exitHandlers, handler );
+		return this._removeHandler( this._exitHandlers, callback );
 	}
 	
 	public function addEnterCommandMapping( mapping : ICommandMapping ) : Void
@@ -177,11 +181,11 @@ class State
 		return Stringifier.stringify( this ) + "::" + this._stateName;
 	}
 
-	function _addHandler( handlers : Array<BasicHandler>, handler : BasicHandler ) : Bool
+	inline function _addHandler( handlers : Array<State->Void>, callback : State->Void ) : Bool
 	{
-		if ( handlers.indexOf( handler ) == -1 )
+		if ( handlers.indexOf( callback ) == -1 )
 		{
-			handlers.push( handler );
+			handlers.push( callback );
 			return true;
 		}
 		else
@@ -190,9 +194,9 @@ class State
 		}
 	}
 
-	function _removeHandler( handlers : Array<BasicHandler>, handler : BasicHandler ) : Bool
+	inline function _removeHandler( handlers : Array<State->Void>, callback : State->Void ) : Bool
 	{
-		var id : Int = handlers.indexOf( handler );
+		var id : Int = handlers.indexOf( callback );
 		if (  id != -1 )
 		{
 			handlers.splice( id, 1 );
