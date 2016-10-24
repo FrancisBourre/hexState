@@ -171,8 +171,8 @@ class StateMachineTest
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
 		this._transitionListener = new MockTransitionListener( this._controller );
 
-		this.anonymous.addExitHandler( this._transitionListener, this._transitionListener.testExitCallback );
-		this.guest.addEnterHandler( this._transitionListener, this._transitionListener.testEnterCallback );
+		this.anonymous.addExitHandler( this._transitionListener.testExitCallback );
+		this.guest.addEnterHandler( this._transitionListener.testEnterCallback );
 		
 		this._fireMessage( this.logAsGuest );
 
