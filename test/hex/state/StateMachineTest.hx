@@ -194,7 +194,7 @@ class StateMachineTest
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
 		
 		this.anonymous.addExitCommand( MockCommandWithRequest );
-		var mockStringRequest = new MockRequest( [new ExecutionPayload( new MockCaseParser(), IParser )] );
+		var mockStringRequest = new MockRequest( [new ExecutionPayload( new MockCaseParser() ).withClassName( "hex.data.IParser<String>" ) ] );
 		mockStringRequest.code = "cwr";
 
 		this._controller.handleMessage( this.logAsUser, mockStringRequest );
