@@ -4,6 +4,7 @@ import hex.control.Request;
 import hex.control.async.IAsyncCommand;
 import hex.control.command.ICommandMapping;
 import hex.di.IBasicInjector;
+import hex.error.IllegalStateException;
 import hex.event.MessageType;
 import hex.state.control.StateChangeMacro;
 
@@ -36,7 +37,7 @@ class StateController
 	{
 		if ( this._isInTransition )
 		{
-			//store
+			throw new IllegalStateException( 'new state change cannot be triggered during previous state change' );
 		}
 		else
 		{
