@@ -16,7 +16,7 @@ class State
 	var _stateName 					: String;
 	var _stateMachine 				: StateMachine;
 
-	var _transitions				= new Map<MessageType,Transition>();
+	var _transitions				= new Map<String,Transition>();
 
 	var _enterCommandMappings 		: Array<ICommandMapping> = [];
 	var _exitCommandMappings 		: Array<ICommandMapping> = [];
