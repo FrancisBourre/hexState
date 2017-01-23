@@ -1,6 +1,9 @@
 package hex.state;
 
+#if (!neko || haxe_ver >= "3.3")
 import haxe.Timer;
+import hex.state.mock.InviteForRegisterMockCommand;
+#end
 import hex.control.macro.IMacroExecutor;
 import hex.control.macro.MacroExecutor;
 import hex.control.payload.ExecutionPayload;
@@ -16,7 +19,6 @@ import hex.state.mock.DisplayAddBannerMockCommand;
 import hex.state.mock.DisplayWelcomeMessageMockCommand;
 import hex.state.mock.GetAdminPrivilegesMockCommand;
 import hex.state.mock.IMockCommandLogger;
-import hex.state.mock.InviteForRegisterMockCommand;
 import hex.state.mock.MockCaseParser;
 import hex.state.mock.MockCommandLogger;
 import hex.state.mock.MockCommandWithRequest;
@@ -89,7 +91,9 @@ class StateMachineTest
 		this.user.addTransition( this.logAsAdministrator, this.administrator );
 
 		this.guest.addEnterCommand( DisplayAddBannerMockCommand );
+		#if (!neko || haxe_ver >= "3.3")
 		this.guest.addEnterCommand( InviteForRegisterMockCommand );
+		#end
 		this.guest.addTransition( this.logAsUser, this.user );
 		this.guest.addTransition( this.logout, this.anonymous );
 
@@ -165,6 +169,7 @@ class StateMachineTest
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
 	}
 	
+	#if (!neko || haxe_ver >= "3.3")
 	@Async( "Test asynchronous transitions with handlers" )
 	public function testAsyncTransitionsWithHandlers() : Void
 	{
@@ -187,6 +192,7 @@ class StateMachineTest
 		Assert.equals( this.anonymous, this._transitionListener.exitState, "'anonymous' should be exit state" );
 		Assert.equals( this.guest, this._transitionListener.enterState, "'guest' should be enter state" );
 	}
+	#end
 	
 	@Test( "Test state change with payload" )
 	public function testStateChangeWithPayload() : Void
