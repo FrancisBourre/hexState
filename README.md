@@ -1,5 +1,5 @@
-# hexState
-[![TravisCI Build Status](https://travis-ci.org/DoclerLabs/hexState.svg?branch=master)](https://travis-ci.org/DoclerLabs/hexState)
+# hexState [![TravisCI Build Status](https://travis-ci.org/DoclerLabs/hexState.svg?branch=master)](https://travis-ci.org/DoclerLabs/hexState)
+
 State machine written in Haxe
 
 *Find more information about hexMachina on [hexmachina.org](http://hexmachina.org/)*
