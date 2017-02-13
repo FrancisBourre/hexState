@@ -14,7 +14,6 @@ import hex.log.Stringifier;
 class State
 {
 	var _stateName 					: String;
-	var _stateMachine 				: StateMachine;
 
 	var _transitions				= new Map<String,Transition>();
 
@@ -115,11 +114,6 @@ class State
 	public function addTransition( messageType : MessageType, targetState : State ) : Void
 	{
 		this._transitions.set( messageType, new Transition( this, messageType, targetState ) );
-	}
-
-	public function getMachine() : StateMachine
-	{
-		return this._stateMachine;
 	}
 
 	public function getEvents() : Array<MessageType>
