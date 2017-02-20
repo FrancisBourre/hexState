@@ -80,7 +80,7 @@ class StateController
 			sm.addFailHandler( callback );
 			sm.addCancelHandler( callback );
 			sm.preExecute( this._request );
-			sm.execute( this._request );
+			sm.execute();
 		}
 		else
 		{

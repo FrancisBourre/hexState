@@ -1,6 +1,5 @@
 package hex.state.mock;
 
-import hex.control.Request;
 import hex.control.command.BasicCommand;
 import hex.data.IParser;
 
@@ -11,13 +10,16 @@ import hex.data.IParser;
 class MockCommandWithRequest extends BasicCommand
 {
 	@Inject
+	public var code : String;
+	
+	@Inject
 	public var logger : IMockCommandLogger;
 	
 	@Inject
 	public var parser : IParser<String>;
 	
-	public function execute( ?request : Request ) : Void 
+	override public function execute() : Void
 	{
-		this.logger.log( this.parser.parse( ( cast request ).code ) );
+		this.logger.log( this.parser.parse( this.code ) );
 	}
 }
