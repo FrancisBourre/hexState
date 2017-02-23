@@ -5,7 +5,7 @@ import hex.control.command.ICommand;
 import hex.control.command.ICommandMapping;
 import hex.di.IContextOwner;
 import hex.event.MessageType;
-import hex.log.Stringifier;
+import hex.util.Stringifier;
 
 /**
  * ...
