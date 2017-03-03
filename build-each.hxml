@@ -1,16 +1,7 @@
 -main MainStateTest
--cp src
+
+-lib hexstate
+-lib hexunit
+
 -cp test
--cp hexcore/src
--cp hexcore/test
--cp hexreflection/src
--cp hexreflection/test
--cp hexannotation/src
--cp hexannotation/test
--cp hexinject/src
--cp hexinject/test
--cp hexmvc/src
--cp hexmvc/test
--cp hexunit/src
--cp hexunit/test
 -D debug=true
