@@ -1,6 +1,5 @@
 package hex.state.mock;
 
-import hex.control.Request;
 import hex.control.command.BasicCommand;
 import hex.module.IModule;
 
@@ -16,7 +15,7 @@ class MockCommandWithStringInjection extends BasicCommand
 	@Inject
 	public var name : String;
 	
-	public function execute( ?request : Request ) : Void 
+	override public function execute() : Void
 	{
 		var module : MockModuleWithStringParameter = cast this.module;
 		module.setName( name );

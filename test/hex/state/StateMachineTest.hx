@@ -2,8 +2,8 @@ package hex.state;
 
 #if (!neko || haxe_ver >= "3.3")
 import haxe.Timer;
-import hex.state.mock.InviteForRegisterMockCommand;
 #end
+import hex.control.Request;
 import hex.control.macro.IMacroExecutor;
 import hex.control.macro.MacroExecutor;
 import hex.control.payload.ExecutionPayload;
@@ -13,21 +13,7 @@ import hex.di.Injector;
 import hex.event.Dispatcher;
 import hex.event.MessageType;
 import hex.state.control.StateController;
-import hex.state.mock.AnotherMockCommandWithRequest;
-import hex.state.mock.DeleteAllCookiesMockCommand;
-import hex.state.mock.DisplayAddBannerMockCommand;
-import hex.state.mock.DisplayWelcomeMessageMockCommand;
-import hex.state.mock.GetAdminPrivilegesMockCommand;
-import hex.state.mock.IMockCommandLogger;
-import hex.state.mock.MockCaseParser;
-import hex.state.mock.MockCommandLogger;
-import hex.state.mock.MockCommandWithRequest;
-import hex.state.mock.MockCommandWithStringInjection;
-import hex.state.mock.MockModuleWithStringParameter;
-import hex.state.mock.MockRequest;
-import hex.state.mock.PrepareUserInfosMockCommand;
-import hex.state.mock.RemoveAdminPrivilegesMockCommand;
-import hex.state.mock.StoreUserActivityMockCommand;
+import hex.state.mock.*;
 import hex.unittest.assertion.Assert;
 import hex.unittest.runner.MethodRunner;
 
@@ -200,8 +186,11 @@ class StateMachineTest
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
 		
 		this.anonymous.addExitCommand( MockCommandWithRequest );
-		var mockStringRequest = new MockRequest( [new ExecutionPayload( new MockCaseParser() ).withClassName( "hex.data.IParser<String>" ) ] );
-		mockStringRequest.code = "cwr";
+		var mockStringRequest = new Request( 
+		[
+			new ExecutionPayload( new MockCaseParser() ).withClassName( "hex.data.IParser<String>" ), 
+			new ExecutionPayload( "cwr", String )
+		] );
 
 		this._controller.handleMessage( this.logAsUser, mockStringRequest );
 
@@ -211,8 +200,7 @@ class StateMachineTest
 
 		this.user.addExitCommand( AnotherMockCommandWithRequest );
 
-		mockStringRequest.code = "cwa";
-		mockStringRequest.method = this._commandLogger.log;
+		mockStringRequest = new Request( [new ExecutionPayload( new MockCaseParser() ).withClassName( "hex.data.IParser<String>" ), new ExecutionPayload( "cwa", String ) ] );
 		this._controller.handleMessage( this.logAsAdministrator, mockStringRequest );
 
 		var logs : Array<String> = [ "CWR","PUI","DWM","SUA","CWA","GAP" ];

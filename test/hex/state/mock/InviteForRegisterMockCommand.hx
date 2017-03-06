@@ -2,7 +2,6 @@ package hex.state.mock;
 
 #if (!neko || haxe_ver >= "3.3")
 import haxe.Timer;
-import hex.control.Request;
 import hex.control.async.AsyncCommand;
 
 /**
@@ -14,7 +13,7 @@ class InviteForRegisterMockCommand extends AsyncCommand
 	@Inject
 	public var logger : IMockCommandLogger;
 
-	public function execute( ?request : Request ) : Void
+	override public function execute() : Void
 	{
 		Timer.delay( this._execute, 50 );
 	}
