@@ -1,6 +1,5 @@
 package hex.state.mock;
 
-#if (!neko || haxe_ver >= "3.3")
 import haxe.Timer;
 import hex.control.async.AsyncCommand;
 
@@ -24,4 +23,3 @@ class InviteForRegisterMockCommand extends AsyncCommand
 		this._handleComplete();
 	}
 }
-#end
