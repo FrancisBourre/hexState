@@ -1,6 +1,6 @@
 package;
 
-import hex.state.HexStateSuite;
+import hex.HexStateSuite;
 import hex.unittest.runner.ExMachinaUnitCore;
 import hex.unittest.notifier.TraceNotifier;
 #if js
