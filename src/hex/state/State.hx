@@ -5,6 +5,7 @@ import hex.control.command.ICommand;
 import hex.control.command.ICommandMapping;
 import hex.di.IContextOwner;
 import hex.event.MessageType;
+import hex.util.ArrayUtil;
 import hex.util.Stringifier;
 
 /**
@@ -177,7 +178,7 @@ class State
 
 	inline function _addHandler( handlers : Array<State->Void>, callback : State->Void ) : Bool
 	{
-		if ( handlers.indexOf( callback ) == -1 )
+		if ( ArrayUtil.indexOf( handlers, callback ) == -1 )
 		{
 			handlers.push( callback );
 			return true;
@@ -190,7 +191,7 @@ class State
 
 	inline function _removeHandler( handlers : Array<State->Void>, callback : State->Void ) : Bool
 	{
-		var id : Int = handlers.indexOf( callback );
+		var id : Int = ArrayUtil.indexOf( handlers, callback );
 		if (  id != -1 )
 		{
 			handlers.splice( id, 1 );

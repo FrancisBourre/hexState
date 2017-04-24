@@ -1,4 +1,6 @@
-package hex.state;
+package hex;
+
+import hex.state.StateMachineTest;
 
 /**
  * ...

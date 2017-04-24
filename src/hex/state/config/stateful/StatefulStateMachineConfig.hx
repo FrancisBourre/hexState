@@ -1,10 +1,13 @@
 package hex.state.config.stateful;
 
 import hex.config.stateful.IStatefulConfig;
+import hex.di.Dependency;
 import hex.di.IDependencyInjector;
 import hex.event.IDispatcher;
-import hex.module.IModule;
+import hex.module.IContextModule;
 import hex.state.control.StateController;
+
+using hex.di.util.InjectionUtil;
 
 /**
  * ...
@@ -21,7 +24,7 @@ class StatefulStateMachineConfig implements IStatefulConfig
 		this._startState = startState;
 	}
 	
-	public function configure( injector : IDependencyInjector, dispatcher : IDispatcher<{}>, module : IModule ) : Void
+	public function configure( injector : IDependencyInjector, module : IContextModule ) : Void
 	{
 		this._stateMachine = new StateMachine( this._startState );
 		this._stateController = new StateController( injector, this._stateMachine );
@@ -29,6 +32,6 @@ class StatefulStateMachineConfig implements IStatefulConfig
 		injector.mapToValue( StateMachine, this._stateMachine );
 		injector.mapToValue( StateController, this._stateController );
 
-		dispatcher.addListener( this._stateController );
+		injector.getDependencyInstance( new Dependency<IDispatcher<{}>>() ).addListener( this._stateController );
 	}
 }
