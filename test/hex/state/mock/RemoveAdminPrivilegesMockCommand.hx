@@ -9,10 +9,10 @@ import hex.control.command.BasicCommand;
 class RemoveAdminPrivilegesMockCommand extends BasicCommand
 {
 	@Inject
-	public var logger : IMockCommandLogger;
+	public var commandLogger : IMockCommandLogger;
 
 	override public function execute() : Void
 	{
-		this.logger.log( "RAP" );
+		this.commandLogger.log( "RAP" );
 	}
 }

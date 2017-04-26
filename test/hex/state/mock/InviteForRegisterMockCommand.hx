@@ -10,7 +10,7 @@ import hex.control.async.AsyncCommand;
 class InviteForRegisterMockCommand extends AsyncCommand
 {
 	@Inject
-	public var logger : IMockCommandLogger;
+	public var commandLogger : IMockCommandLogger;
 
 	override public function execute() : Void
 	{
@@ -19,7 +19,7 @@ class InviteForRegisterMockCommand extends AsyncCommand
 	
 	function _execute() : Void
 	{
-		this.logger.log( "IFR" );
+		this.commandLogger.log( "IFR" );
 		this._handleComplete();
 	}
 }
