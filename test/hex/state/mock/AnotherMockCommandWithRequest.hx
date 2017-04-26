@@ -13,13 +13,13 @@ class AnotherMockCommandWithRequest extends BasicCommand
 	public var code : String;
 	
 	@Inject
-	public var logger : IMockCommandLogger;
+	public var commandLogger : IMockCommandLogger;
 	
 	@Inject
 	public var parser : IParser<String>;
 	
 	override public function execute() : Void
 	{
-		this.logger.log( this.parser.parse( this.code ) );
+		this.commandLogger.log( this.parser.parse( this.code ) );
 	}
 }
