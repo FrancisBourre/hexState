@@ -10,10 +10,10 @@ import hex.control.command.BasicCommand;
 class StoreUserActivityMockCommand extends BasicCommand
 {
 	@Inject
-	public var logger : IMockCommandLogger;
+	public var commandLogger : IMockCommandLogger;
 
 	override public function execute() : Void
 	{
-		this.logger.log( "SUA" );
+		this.commandLogger.log( "SUA" );
 	}
 }
