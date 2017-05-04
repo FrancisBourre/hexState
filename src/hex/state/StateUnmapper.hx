@@ -1,6 +1,6 @@
 package hex.state;
 
-import hex.collection.HashMap;
+import hex.collection.ArrayMap;
 import hex.control.command.ICommandMapping;
 
 /**
@@ -9,7 +9,7 @@ import hex.control.command.ICommandMapping;
  */
 class StateUnmapper
 {
-	static var _stateUnmapper : HashMap<State, StateUnmapper> = new HashMap();
+	static var _stateUnmapper : ArrayMap<State, StateUnmapper> = new ArrayMap();
 	
 	var _state 			: State;
 	var _enterMappings 	: Array<ICommandMapping> = [];
@@ -61,6 +61,6 @@ class StateUnmapper
 	{
 		var stateUnmappers : Array<StateUnmapper> = StateUnmapper._stateUnmapper.getValues();
 		for ( unmapper in stateUnmappers ) unmapper.unmap();
-		StateUnmapper._stateUnmapper = new HashMap();
+		StateUnmapper._stateUnmapper = new ArrayMap();
 	}
 }
