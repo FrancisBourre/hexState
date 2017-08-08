@@ -7,7 +7,7 @@ import hex.event.IDispatcher;
 import hex.module.IContextModule;
 import hex.state.control.StateController;
 
-using hex.di.util.InjectionUtil;
+using hex.di.util.InjectorUtil;
 
 /**
  * ...
