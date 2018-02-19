@@ -165,7 +165,9 @@ class StateMachineTest
 		// Guest change is asynchronous, so at this time it stills in 'anonymous' state
 		Assert.equals( this.anonymous, this._controller.getCurrentState(), "'anonymous' should be current state" );
 		
-		Timer.delay( MethodRunner.asyncHandler( this._onCompleteTestAsyncTransitionsWithHandlers ), 200 );
+		Timer.delay( 
+			MethodRunner.asyncHandler.bind( this._onCompleteTestAsyncTransitionsWithHandlers )
+			, 200 );
 	}
 	
 	function _onCompleteTestAsyncTransitionsWithHandlers() : Void
